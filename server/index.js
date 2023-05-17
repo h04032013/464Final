@@ -8,7 +8,7 @@ const pool = require('./db');
 app.use(cors())
 app.use(express.json())
 
-let PORT  = 5000 
+const PORT = process.env.PORT || 5000
 
 //GET all todos
 
@@ -27,6 +27,6 @@ app.post('/todos', async (req, res) => {
 
 //DELETE one todo
 
-app.listen(PORT, () =>{
-    console.log(`server is starting on port ${PORT}`);
+app.listen(PORT, (req, res) =>{
+    console.log(`App is running on port ${PORT}.`);
 } )
