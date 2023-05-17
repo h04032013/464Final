@@ -14,19 +14,28 @@ const PORT = process.env.PORT || 5000
 //we are getting a static html file
 app.use(express.static(path.resolve(__dirname, '../client')));
 
-//return react frontend app
+//GET front end, no more "cannot get / error"
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname,'../client/index.html'))
 })
 
 //GET all todos
-
-//GET one todo
 app.get('/todos', async (req, res) => {
     try {
         const description = req.body;
-        const allTodos = await pool.query("SELECT * FROM list; ")
+        const allTodos = await pool.query("SELECT * FROM list;")
         res.json(allTodos.rows);
+    } catch (e) {
+        console.error(e.message);
+    } 
+})
+
+//GET one todo
+app.get("/todos:id", async (req, res) => {
+    try {
+        const {id}  = req.params;
+        const todo = await pool.query("SELECT * FROM list WHERE todo_id = $1;",[id])
+        res.json(todo.rows[0]);
     } catch (e) {
         console.error(e.message);
     } 
@@ -45,8 +54,30 @@ app.post('/todos', async (req, res) => {
 })
 
 //UPDATE a todo
+app.put("/todos:id", async (req, res) => {
+    try {
+        const {id}  = req.params;
+        const {description}  = req.body;
+        const updatedTodo = await pool.query("UPDATE list SET description = $1 WHERE todo_id = $2 ;"
+        ,[description,id]);
+        res.json("todo list was updated");
+    } catch (e) {
+        console.error(e.message);
+    } 
+})
 
 //DELETE one todo
+app.delete("/todos:id", async (req, res) => {
+    try {
+        const {id}  = req.params;
+        const deleteTodo = await pool.query("DELETE FROM list WHERE todo_id = $1 ;"
+        ,[id]);
+        res.json("todo list was deleted");
+    } catch (e) {
+        console.error(e.message);
+    } 
+})
+
 
 app.listen(PORT, (req, res) =>{
     console.log(`App is running on port ${PORT}.`);
