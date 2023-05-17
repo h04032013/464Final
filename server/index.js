@@ -17,7 +17,10 @@ const PORT = process.env.PORT || 5000
 //CREATE one todo
 app.post('/todos', async (req, res) => {
     try {
-        res.json(req.body);
+        const description = req.body;
+        const newTodo = await pool.query("INSERT INTO list (description) VALUES ($1) RETURNING * "
+        , [description])
+        res.json(newTodo.rows[0]);
     } catch (e) {
         console.error(e.message);
     }
