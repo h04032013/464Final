@@ -1,5 +1,4 @@
-import React, {Fragment, useState} from 'react';
-
+import React, {Fragment, useState} from "react";
 
 const Input  = () => {
     const [description,setDescription] = useState("");
@@ -10,8 +9,9 @@ const Input  = () => {
         try{
             const body = {description};
             //fetch request, using body for backend
+            //await = tell the program to wait before sending error msg
             const response = await fetch("https://localhost:5000/todos", {
-                //add input to backend database as REST
+                //add input to backend database as REST. post the info
                 method: "POST",
                 //data as JSON
                 headers: { "Content-Type": "application/json"},

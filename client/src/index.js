@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 /* connect to html file after npm run build
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
+For css: font-family: 'Anton', sans-serif;
 */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
