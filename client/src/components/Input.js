@@ -25,6 +25,7 @@ const Input  = () => {
             <h1>Enter something to do today!</h1>
             <form onSubmit={onSubmitForm} >
                 <input type="text" value = {description}
+                //store input as a prop/state in the js
                 onChange={e => setDescription(e.target.value)}></input>
                 <button type="submit">Add</button>
             </form>

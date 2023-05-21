@@ -13,8 +13,6 @@ const ListStuff = ()=> {
 
         //testing out the response 
         console.log(todoList);
-
-
         setValues(todoList)
     }
     useEffect( () =>{
@@ -33,9 +31,13 @@ const ListStuff = ()=> {
             </tr>
         </thead>
         <tbody>
+           {todos.map(todo => {
             <tr>
-
+                <td>{todo.description}</td>
+                <td>Edit</td>
+                <td>Delete</td>
             </tr>
+           })}
         </tbody>
         </table>
 
