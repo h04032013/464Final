@@ -6,6 +6,17 @@ const ListStuff = ()=> {
     //state to store todo items info in react
     const [todos, setValues] = useState([]);
 
+    async function deleteTodo(id){
+        try {
+          const res =  await fetch(`https://localhost:5000/todos/${id}`, {method: "DELETE"});
+        //so react updates and reflects changes
+          setTodos(todos.filter(todos => todo.todo_id !== id));
+        } catch (e) {
+            console.error(e.message);
+
+    }}
+
+
     async function getList() {
         const res = await fetch("https://localhost:5000/todos");
         //wait for it to parse!!
@@ -31,11 +42,13 @@ const ListStuff = ()=> {
             </tr>
         </thead>
         <tbody>
+
            {todos.map(todo => {
-            <tr>
+            //Get prop from index.js api
+            <tr key={todo.todo_id}>
                 <td>{todo.description}</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td><button>Edit</button></td>
+                <td><button onClick={()=>deleteTodo(todo.todo_id)}>Delete</button></td>
             </tr>
            })}
         </tbody>

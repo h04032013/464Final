@@ -9,6 +9,8 @@ const path = require('path')
 app.use(cors())
 app.use(express.json())
 
+
+//5000 chosen to not conflict with host 8000 from HW5 or host 7001 from classwork
 const PORT = process.env.PORT || 5000
 
 //we are getting a static html file
@@ -16,7 +18,7 @@ app.use(express.static(path.resolve(__dirname, '../client')));
 
 //GET front end, no more "cannot get / error"
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname,'../client/index.html'))
+    res.sendFile(path.resolve(__dirname,'../client/build/index.html'));
 })
 
 //GET all todos
