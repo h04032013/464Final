@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-const cors = require('cors');
-const pool = require('./db');
+const cors = require("cors");
+const pool = require("./db");
 const path = require('path')
 
 //Middleware - Allow frontend & backed to connect
@@ -14,7 +14,7 @@ app.use(express.json())
 const PORT = process.env.PORT || 5000
 
 //we are getting a static html file
-app.use(express.static(path.resolve(__dirname, '../client')));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 //GET front end, no more "cannot get / error"
 app.get('/', (req, res) => {

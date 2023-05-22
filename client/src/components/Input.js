@@ -16,12 +16,14 @@ const Input  = () => {
                 //data as JSON
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(body)});
+                //wont have to manually refresh
+                window.location = "/";
         } catch (er) {
             console.error(er);
         }
     }
     return (
-        <Fragment>
+        <div>
             <h1>Enter something to do today!</h1>
             <form onSubmit={onSubmitForm} >
                 <input type="text" value = {description}
@@ -29,7 +31,7 @@ const Input  = () => {
                 onChange={e => setDescription(e.target.value)}></input>
                 <button type="submit">Add</button>
             </form>
-            </Fragment>
+            </div>
     )
 }
 
